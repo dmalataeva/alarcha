@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entities">
+    <class name = "Pickup" table = "Pickup">
+
+        <meta attribute = "class-description">
+            This class contains pick-up information.
+        </meta>
+
+        <id name = "pickupId" type = "int" column = "pickupId">
+            <generator class="native"/>
+        </id>
+
+        <property name = "orderId" column = "orderId" type = "int"/>
+        <property name = "address" column = "address" type = "string"/>
+        <property name = "status" column = "status" type = "string"/>
+
+    </class>
+</hibernate-mapping>

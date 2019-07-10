@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entities">
+    <class name = "OrderItem" table = "OrderItems">
+
+        <meta attribute = "class-description">
+            This class contains order item information.
+        </meta>
+
+        <!-- Use a composite id for an id that is of type OrderItemId (it uses both orderId and itemId) -->
+        <composite-id name="orderItemId">
+            <key-property name = "orderId" type = "int" column = "orderId"/>
+            <key-property name = "itemId" type = "int" column = "itemId"/>
+        </composite-id>
+
+        <property name = "quantity" column = "quantity" type = "int"/>
+        <property name = "cost" column = "cost" type = "double"/>
+
+    </class>
+</hibernate-mapping>

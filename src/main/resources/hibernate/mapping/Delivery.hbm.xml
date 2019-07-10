@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entities">
+    <class name = "Delivery" table = "Delivery">
+
+        <meta attribute = "class-description">
+            This class contains delivery information.
+        </meta>
+
+        <id name = "deliveryId" type = "int" column = "deliveryId">
+            <generator class="native"/>
+        </id>
+
+        <property name = "orderId" column = "orderId" type = "int"/>
+        <property name = "address" column = "address" type = "string"/>
+        <property name = "status" column = "status" type = "string"/>
+        <property name = "userNote" column = "userNote" type = "string"/>
+
+    </class>
+</hibernate-mapping>
