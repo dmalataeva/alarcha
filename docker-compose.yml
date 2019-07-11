@@ -17,7 +17,5 @@ services:
       MYSQL_ROOT_PASSWORD: '--'
     ports:
       - '6603:6603' # <PORT EXPOSED>:<PORT WITHIN CONTAINER>
-volumes:
-      - my-db:/var/lib/mysql
-volumes: # TODO: finish this later
-  my-db:
+    volumes:
+      - ./db:/var/lib/mysql
