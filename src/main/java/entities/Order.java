@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -17,7 +18,8 @@ public class Order {
         -orderItems [{orderItem}]
         -total
      */
-    private @Id @GeneratedValue int orderId;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private int orderId;
     private int userId;
     private Timestamp datePlaced;
     private String collectMethod;

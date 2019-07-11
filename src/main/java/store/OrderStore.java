@@ -4,16 +4,34 @@ import entities.Order;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import repositories.OrderRepository;
 
+import java.util.Optional;
+
+@Service
 public class OrderStore {
 
+    private static Logger logger = LoggerFactory.getLogger(OrderStore.class);
+
+    @Autowired
+    private static OrderRepository orderRepository;
+
     public static Order getOrder(int orderId) {
-        Session session = StoreFactory.getFactorySingleton().openSession();
-        Transaction transaction = null;
+        //Session session = StoreFactory.getFactorySingleton().openSession();
+        //Transaction transaction = null;
 
-        Order order = null;
+        Order order = new Order();
+        order.setOrderId(orderId);
 
-        try {
+        Optional<Order> res = orderRepository.findById(orderId);
+        logger.info("Order res: " + res);
+        return res.orElse(null);
+
+        /*try {
             transaction = session.beginTransaction();
             order = session.get(Order.class, orderId);
             transaction.commit();
@@ -26,7 +44,7 @@ public class OrderStore {
             session.close();
         }
 
-        return order;
+        return order;*/
     }
 
     public static void updateOrder(Order order) {

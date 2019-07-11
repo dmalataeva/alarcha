@@ -1,4 +1,13 @@
-CREATE TABLE `Orders` (
+CREATE DATABASE IF NOT EXISTS `may_prototype`;
+USE `may_prototype`;
+
+DROP TABLE IF EXISTS `Order`;
+DROP TABLE IF EXISTS `OrderItem`;
+DROP TABLE IF EXISTS `Item`;
+DROP TABLE IF EXISTS `Delivery`;
+DROP TABLE IF EXISTS `Pickup`;
+
+CREATE TABLE `Order` (
   orderId INT NOT NULL AUTO_INCREMENT,
   userId INT,
   datePlaced TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -7,7 +16,7 @@ CREATE TABLE `Orders` (
   PRIMARY KEY (orderId)
 );
 
-CREATE TABLE `OrderItems` (
+CREATE TABLE `OrderItem` (
   orderId INT NOT NULL,
   itemId INT NOT NULL,
   options VARCHAR(255),
@@ -39,6 +48,11 @@ CREATE TABLE `Pickup` (
   status VARCHAR(255),
   PRIMARY KEY(pickupId)
 );
+
+-- create some test records
+
+INSERT INTO `Order`(userId, collectMethod, total) VALUES (1, "WHATEVER", 120.85);
+INSERT INTO `Order`(userId, collectMethod, total) VALUES (2, "NO PICKUP", 15667.1);
 
 
 

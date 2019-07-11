@@ -30,5 +30,8 @@ hs_err_pid*
 .mvn/*
 target
 
+# Mount volumes
+db
+
 # Secrets
 passwords.txt

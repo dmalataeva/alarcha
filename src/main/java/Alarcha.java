@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import store.StoreFactory;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "http.controller") // tell Spring to find rest controller methods here
+@ComponentScan(basePackages = "controllers") // tell Spring to find rest controller methods here
 public class Alarcha {
     public static void main(String[] args) {
 
