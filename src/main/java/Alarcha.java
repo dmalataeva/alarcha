@@ -14,8 +14,8 @@ public class Alarcha {
         SpringApplication.run(Alarcha.class, args);
         System.out.println("started SpringBootApplication");
 
-        StoreFactory.initializeSession();
-        System.out.println("initialized session");
+        //StoreFactory.initializeSession();
+        //System.out.println("initialized session");
 
         //int res = OrderStore.addOrder(new Order(123, Instant.now(), "UberEats", 100500));
         //System.out.println("Result of addOrder: " + res);
