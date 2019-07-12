@@ -4,39 +4,44 @@ import entities.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import store.OrderStore;
+import repositories.OrderRepository;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    private Logger logger = LoggerFactory.getLogger(OrderController.class);
+    //private Logger logger = LoggerFactory.getLogger(OrderController.class);
+
+    private OrderRepository orderRepository;
+
+    OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @RequestMapping("/")
     public String defaultOrder() {
-        logger.info("Reached default endpoint");
+        //logger.info("You've hit the default endpoint");
+        //logger.debug("This is a debugging message for the default endpoint");
         return "Default order endpoint";
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public Order getOrder(@RequestParam("id") int orderId) {
-        logger.info("GET request with id " + orderId);
-        return OrderStore.getOrder(orderId);
+        return orderRepository.findById(orderId).orElse(new Order());
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void putOrder(@RequestBody Order order) {
-        System.out.println("PUT request with order " + order);
-        OrderStore.updateOrder(order);
+        orderRepository.save(order);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public int postOrder(@RequestBody Order order) {
-        return OrderStore.addOrder(order);
+    public Order postOrder(@RequestBody Order order) {
+        return orderRepository.save(order);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteOrder(@PathVariable int orderId) {
-        OrderStore.deleteOrder(orderId);
+        orderRepository.deleteById(orderId);
     }
 
 }

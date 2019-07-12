@@ -1,7 +1,7 @@
 package repositories;
 
-import entities.Order;
-import org.springframework.data.repository.CrudRepository;
+import entities.Item;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends CrudRepository<Order, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Integer> {
 }

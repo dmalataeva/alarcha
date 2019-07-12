@@ -1,10 +1,12 @@
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import store.StoreFactory;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "controllers") // tell Spring to find rest controller methods here
+@EnableJpaRepositories(basePackages="repositories")
 public class Alarcha {
     public static void main(String[] args) {
 

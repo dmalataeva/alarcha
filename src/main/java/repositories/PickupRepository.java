@@ -1,7 +1,7 @@
 package repositories;
 
-import entities.Order;
-import org.springframework.data.repository.CrudRepository;
+import entities.Pickup;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PickupRepository extends CrudRepository<Order, Integer> {
+public interface PickupRepository extends JpaRepository<Pickup, Integer> {
 }
