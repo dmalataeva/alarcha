@@ -50,9 +50,9 @@ CREATE TABLE `Pickup` (
 );
 
 -- create some test records
-
-INSERT INTO `Order`(userId, collectMethod, total) VALUES (1, "WHATEVER", 120.85);
-INSERT INTO `Order`(userId, collectMethod, total) VALUES (2, "NO PICKUP", 15667.1);
+-- WARNING: these will not show up if you are using Jpa repositories with Spring Boot!!! The Jpa repository is treated as a new instance
+--INSERT INTO `Order`(userId, collectMethod, total) VALUES (1, "WHATEVER", 120.85);
+--INSERT INTO `Order`(userId, collectMethod, total) VALUES (2, "NO PICKUP", 15667.1);
 
 
 
