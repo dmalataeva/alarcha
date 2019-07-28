@@ -13,7 +13,7 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'may_prototype'
+      MYSQL_DATABASE: 'shop'
       MYSQL_ROOT_PASSWORD: '--'
     ports:
       - '6603:6603' # <PORT EXPOSED>:<PORT WITHIN CONTAINER>

@@ -1,7 +1,10 @@
 package repositories;
 
-import entities.OrderItem;
+import entities.OrderItemEntity;
+import entities.OrderItemEntityPK;
+import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItemEntity, OrderItemEntityPK> {
 }
