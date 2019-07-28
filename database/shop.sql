@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `register_date` DATE NOT NULL,
+  `register_date` TIMESTAMP NOT NULL,
   `role` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`user_id`)
 );
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `seller` (
 CREATE TABLE IF NOT EXISTS `product` (
   `product_id` INT NOT NULL,
   `product_name` VARCHAR(255) NOT NULL,
-  `date_modified` DATE NOT NULL,
+  `date_modified` TIMESTAMP NOT NULL,
   `description` TEXT NOT NULL,
   `stock` INT NOT NULL,
   `unit_cost` FLOAT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `shop`.`shipping` (
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(255) NOT NULL,
-  `date_created` DATE NOT NULL,
+  `date_created` TIMESTAMP NOT NULL,
   `sub_total` FLOAT NOT NULL,
   `customer_id` INT NOT NULL,
   `shipping_id` INT NOT NULL,

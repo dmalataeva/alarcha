@@ -3,11 +3,13 @@ package models;
 import entities.OrderEntity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 public class Order {
     private int orderId;
     private String status;
-    private Date dateCreated;
+    private Instant dateCreated;
     private double subtotal;
     private int customerId;
     private int shippingId;
@@ -15,22 +17,14 @@ public class Order {
     public Order (OrderEntity orderEntity) {
         this.orderId = orderEntity.getOrderId();
         this.status = orderEntity.getStatus();
-        this.dateCreated = orderEntity.getDateCreated();
+        this.dateCreated = orderEntity.getDateCreated().toInstant();
         this.subtotal = orderEntity.getSubtotal();
         this.customerId = orderEntity.getCustomerId();
         this.shippingId = orderEntity.getShippingId();
     }
 
     public OrderEntity convertToEntity() {
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderId(orderId);
-        orderEntity.setStatus(status);
-        orderEntity.setDateCreated(dateCreated);
-        orderEntity.setSubtotal(subtotal);
-        orderEntity.setCustomerId(customerId);
-        orderEntity.setShippingId(shippingId);
-
-        return orderEntity;
+        return new OrderEntity(orderId, status, Timestamp.from(dateCreated), subtotal, customerId, shippingId);
     }
 
     public int getOrderId() {
@@ -49,11 +43,11 @@ public class Order {
         this.status = status;
     }
 
-    public Date getDateCreated() {
+    public Instant getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Instant dateCreated) {
         this.dateCreated = dateCreated;
     }
 

@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "order", schema = "shop")
@@ -27,10 +29,23 @@ public class OrderEntity {
 
     private int orderId;
     private String status;
-    private Date dateCreated;
+    private Timestamp dateCreated;
     private double subtotal;
     private int customerId;
     private int shippingId;
+
+    public OrderEntity() {
+
+    }
+
+    public OrderEntity(int orderId, String status, Timestamp dateCreated, double subtotal, int customerId, int shippingId) {
+        this.orderId = orderId;
+        this.status = status;
+        this.dateCreated = dateCreated;
+        this.subtotal = subtotal;
+        this.customerId = customerId;
+        this.shippingId = shippingId;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,11 +70,11 @@ public class OrderEntity {
 
     @Basic
     @Column(name = "date_created")
-    public Date getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
