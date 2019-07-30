@@ -50,7 +50,7 @@ CREATE TABLE `Pickup` (
 );
 
 -- create some test records
--- WARNING: these will not show up if you are using Jpa repositories with Spring Boot!!! The Jpa repository is treated as a new instance
+-- WARNING: these will not show up if you are using Jpa com.dmalataeva.alarcha.repositories with Spring Boot!!! The Jpa repository is treated as a new instance
 --INSERT INTO `Order`(userId, collectMethod, total) VALUES (1, "WHATEVER", 120.85);
 --INSERT INTO `Order`(userId, collectMethod, total) VALUES (2, "NO PICKUP", 15667.1);
 

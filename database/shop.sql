@@ -96,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `shop`.`shipping` (
   );
 
 -- -----------------------------------------------------
--- Table `shop`.`order`
+-- Table `shop`.`shop_order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE IF NOT EXISTS `shop_order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(255) NOT NULL,
   `date_created` TIMESTAMP NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   `quantity` INT NOT NULL,
   PRIMARY KEY (`product_id`,`order_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`)
+  FOREIGN KEY (`order_id`) REFERENCES `shop_order` (`order_id`)
   );
 
 -- -----------------------------------------------------

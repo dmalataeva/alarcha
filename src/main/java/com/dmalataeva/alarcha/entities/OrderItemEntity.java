@@ -1,14 +1,10 @@
-package entities;
+package com.dmalataeva.alarcha.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
-@Table(name = "order_item", schema = "shop")
+@Table(name = "order_item")
 public class OrderItemEntity {
 
     /*

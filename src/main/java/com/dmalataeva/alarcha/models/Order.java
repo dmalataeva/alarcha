@@ -1,8 +1,7 @@
-package models;
+package com.dmalataeva.alarcha.models;
 
-import entities.OrderEntity;
+import com.dmalataeva.alarcha.entities.OrderEntity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -13,6 +12,15 @@ public class Order {
     private double subtotal;
     private int customerId;
     private int shippingId;
+
+    public Order (int orderId, String status, Instant dateCreated, double subtotal, int customerId, int shippingId) {
+        this.orderId = orderId;
+        this.status = status;
+        this.dateCreated = dateCreated;
+        this.subtotal = subtotal;
+        this.customerId = customerId;
+        this.shippingId = shippingId;
+    }
 
     public Order (OrderEntity orderEntity) {
         this.orderId = orderEntity.getOrderId();

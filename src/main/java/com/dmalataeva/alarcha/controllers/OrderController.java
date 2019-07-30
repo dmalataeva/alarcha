@@ -1,16 +1,19 @@
-package controllers;
+package com.dmalataeva.alarcha.controllers;
 
-import entities.OrderEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.dmalataeva.alarcha.entities.OrderEntity;
+import com.dmalataeva.alarcha.models.Order;
+import com.dmalataeva.alarcha.services.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import repositories.OrderRepository;
-import models.Order;
+import com.dmalataeva.alarcha.repositories.OrderRepository;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
     //private Logger logger = LoggerFactory.getLogger(OrderController.class);
+
+    @Autowired
+    private OrderService orderService;
 
     private OrderRepository orderRepository;
 
@@ -26,23 +29,23 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public OrderEntity getOrder(@RequestParam("id") int orderId) {
-        return orderRepository.findById(orderId).orElse(new OrderEntity());
+    public Order getOrder(@RequestParam("id") int orderId) {
+        return orderService.getOrderById(orderId);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void putOrder(@RequestBody OrderEntity order) {
-        orderRepository.save(order);
+    public void putOrder(@RequestBody Order order) {
+        orderService.saveOrder(order);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public OrderEntity postOrder(@RequestBody OrderEntity order) {
-        return orderRepository.save(order);
+    public Order postOrder(@RequestBody Order order) {
+        return orderService.saveOrder(order);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteOrder(@PathVariable int orderId) {
-        orderRepository.deleteById(orderId);
+        orderService.deleteOrderById(orderId);
     }
 
 }

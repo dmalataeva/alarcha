@@ -1,20 +1,18 @@
-package entities;
+package com.dmalataeva.alarcha.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "order", schema = "shop")
+@Table(name = "shop_order")
 public class OrderEntity {
 
     /*
-    CREATE TABLE IF NOT EXISTS `order` (
+    CREATE TABLE IF NOT EXISTS `shop_order` (
       `order_id` INT NOT NULL AUTO_INCREMENT,
       `status` VARCHAR(255) NOT NULL,
       `date_created` DATE NOT NULL,
@@ -36,6 +34,15 @@ public class OrderEntity {
 
     public OrderEntity() {
 
+    }
+
+    // without orderId
+    public OrderEntity(String status, Timestamp dateCreated, double subtotal, int customerId, int shippingId) {
+        this.status = status;
+        this.dateCreated = dateCreated;
+        this.subtotal = subtotal;
+        this.customerId = customerId;
+        this.shippingId = shippingId;
     }
 
     public OrderEntity(int orderId, String status, Timestamp dateCreated, double subtotal, int customerId, int shippingId) {

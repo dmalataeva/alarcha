@@ -1,7 +1,5 @@
-package entities;
+package com.dmalataeva.alarcha.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.*;
 import java.io.Serializable;
 
