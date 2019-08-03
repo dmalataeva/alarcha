@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.dmalataeva.alarcha") // tell Spring to find rest controller methods here
-@EntityScan("com/dmalataeva/alarcha/entities")
+@ComponentScan(basePackages = "com.dmalataeva.alarcha")
+@EntityScan("com.dmalataeva.alarcha.entities")
 @EnableJpaRepositories(basePackages= "com.dmalataeva.alarcha.repositories")
 public class Alarcha {
     public static void main(String[] args) {
@@ -18,19 +18,6 @@ public class Alarcha {
         // and bind com.dmalataeva.alarcha.controllers as API endpoints
         SpringApplication.run(Alarcha.class, args);
         System.out.println("started SpringBootApplication");
-
-        //StoreFactory.initializeSession();
-        //System.out.println("initialized session");
-
-        //int res = OrderStore.addOrder(new Order(123, Instant.now(), "UberEats", 100500));
-        //System.out.println("Result of addOrder: " + res);
-
-        //res = OrderStore.addOrder(new Order(321, Instant.now(), "Nanaimo", 100500));
-
-        //OrderStore.updateTotal(res, 666);
-        //OrderStore.updateCollectMethod(3, "Елбасы креслосу");
-        //OrderStore.deleteOrder(1);
-
     }
 
     /*@Bean

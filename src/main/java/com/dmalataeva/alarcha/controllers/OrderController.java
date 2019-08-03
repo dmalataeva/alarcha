@@ -29,8 +29,8 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Order getOrder(@RequestParam("id") int orderId) {
-        return orderService.getOrderById(orderId);
+    public Order getOrder(@RequestParam("id") int id) {
+        return orderService.getOrderById(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -44,8 +44,8 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteOrder(@PathVariable int orderId) {
-        orderService.deleteOrderById(orderId);
+    public void deleteOrder(@PathVariable int id) {
+        orderService.deleteOrderById(id);
     }
 
 }
