@@ -9,15 +9,21 @@ services:
       - '8080'
     depends_on:
       - db
+# you might want to remove the db service since you are using an external database
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'shop'
-      MYSQL_ROOT_PASSWORD: '--'
+      MYSQL_DATABASE: '--'
+      MYSQL_USER: '--'
+      MYSQL_PASSWORD: '--'
     ports:
-      - '6603:6603' # <PORT EXPOSED>:<PORT WITHIN CONTAINER>
+      - '3306:3306' # <PORT EXPOSED>:<PORT WITHIN CONTAINER>
     expose:
-      - '6603'
+      - '3306'
+    command: --init-file /database/create.sql
     volumes:
+      - ./create.sql:/database/create.sql
       - ./db:/var/lib/mysql
+#----------------------------------------------------------------------------------
+

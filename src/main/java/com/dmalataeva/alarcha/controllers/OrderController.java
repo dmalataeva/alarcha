@@ -15,12 +15,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    private OrderRepository orderRepository;
-
-    OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
-
     @RequestMapping("/")
     public String defaultOrder() {
         //logger.info("You've hit the default endpoint");

@@ -14,12 +14,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    private CustomerRepository customerRepository;
-
-    CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
-
     @RequestMapping("/")
     public String defaultCustomer() {
         //logger.info("You've hit the default endpoint");

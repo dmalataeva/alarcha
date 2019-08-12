@@ -14,12 +14,6 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    private AddressRepository addressRepository;
-
-    AddressController(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
-
     @RequestMapping("/")
     public String defaultAddress() {
         //logger.info("You've hit the default endpoint");

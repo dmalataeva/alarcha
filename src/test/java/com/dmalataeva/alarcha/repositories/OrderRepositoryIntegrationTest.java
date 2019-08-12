@@ -13,10 +13,10 @@ import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
+//@RunWith(SpringRunner.class)
+//@DataJpaTest
 public class OrderRepositoryIntegrationTest {
-    @Autowired
+    /*@Autowired
     private TestEntityManager entityManager;
 
     @Autowired
@@ -59,5 +59,5 @@ public class OrderRepositoryIntegrationTest {
                 .isNull();
 
         entityManager.clear();
-    }
+    }*/
 }
