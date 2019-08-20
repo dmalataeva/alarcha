@@ -5,6 +5,17 @@
 CREATE SCHEMA IF NOT EXISTS `jkshop` DEFAULT CHARACTER SET utf8 ;
 USE `jkshop` ;
 
+DROP TABLE IF EXISTS `cart_item`;
+DROP TABLE IF EXISTS `order_item`;
+DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `shop_order`;
+DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `shipping`;
+DROP TABLE IF EXISTS `customer`;
+DROP TABLE IF EXISTS `seller`;
+DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `address`;
+
 -- -----------------------------------------------------
 -- Table `shop`.`user`
 -- -----------------------------------------------------
@@ -12,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `register_date` TIMESTAMP NOT NULL,
+  `register_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`user_id`)
 );
@@ -62,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `seller` (
 CREATE TABLE IF NOT EXISTS `product` (
   `product_id` INT NOT NULL,
   `product_name` VARCHAR(255) NOT NULL,
-  `date_modified` TIMESTAMP NOT NULL,
+  `date_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `description` TEXT NOT NULL,
   `stock` INT NOT NULL,
   `unit_cost` FLOAT NOT NULL,
@@ -86,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `shipping` (
 CREATE TABLE IF NOT EXISTS `shop_order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(255) NOT NULL,
-  `date_created` TIMESTAMP NOT NULL,
+  `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sub_total` FLOAT NOT NULL,
   `customer_id` INT NOT NULL,
   `shipping_id` INT NOT NULL,
