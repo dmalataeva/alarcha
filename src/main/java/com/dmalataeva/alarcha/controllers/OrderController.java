@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.dmalataeva.alarcha.repositories.OrderRepository;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -20,6 +22,11 @@ public class OrderController {
         //logger.info("You've hit the default endpoint");
         //logger.debug("This is a debugging message for the default endpoint");
         return "Default order endpoint";
+    }
+
+    @RequestMapping(path = "/customer", method = RequestMethod.GET)
+    public List<Order> getOrderByCustomerId(@RequestParam("id") int id) {
+        return orderService.getOrderByCustomerId(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)

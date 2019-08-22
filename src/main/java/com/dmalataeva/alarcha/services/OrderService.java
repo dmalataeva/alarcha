@@ -29,6 +29,16 @@ public class OrderService {
         return orderList;
     }*/
 
+    public List<Order> getOrderByCustomerId(int customerId) {
+        List<OrderEntity> resEntities = orderRepository.findOrdersByCustomerId(customerId);
+        List<Order> res = new ArrayList<>();
+        for (OrderEntity entity:resEntities) {
+            res.add(new Order(entity));
+        }
+
+        return res;
+    }
+
     public Order saveOrder(Order order) {
         OrderEntity saveResult = orderRepository.save(order.convertToEntity());
         return new Order(saveResult);
