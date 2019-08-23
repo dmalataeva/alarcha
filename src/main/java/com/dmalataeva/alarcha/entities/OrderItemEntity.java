@@ -23,6 +23,8 @@ public class OrderItemEntity {
 
     private int quantity;
 
+    public OrderItemEntity() { }
+
     @Column(name = "quantity")
     public int getQuantity() {
         return quantity;

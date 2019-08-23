@@ -32,18 +32,7 @@ public class OrderEntity {
     private int customerId;
     private int shippingId;
 
-    public OrderEntity() {
-
-    }
-
-    // without orderId
-    public OrderEntity(String status, Timestamp dateCreated, double subtotal, int customerId, int shippingId) {
-        this.status = status;
-        this.dateCreated = dateCreated;
-        this.subtotal = subtotal;
-        this.customerId = customerId;
-        this.shippingId = shippingId;
-    }
+    public OrderEntity() { }
 
     public OrderEntity(int orderId, String status, Timestamp dateCreated, double subtotal, int customerId, int shippingId) {
         this.orderId = orderId;

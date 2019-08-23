@@ -1,9 +1,16 @@
 package com.dmalataeva.alarcha.services;
 
+import com.dmalataeva.alarcha.entities.CustomerEntity;
 import com.dmalataeva.alarcha.entities.OrderEntity;
 import com.dmalataeva.alarcha.models.Order;
+import com.dmalataeva.alarcha.models.OrderAndShipping;
+import com.dmalataeva.alarcha.models.Shipping;
 import com.dmalataeva.alarcha.repositories.OrderRepository;
+import com.dmalataeva.alarcha.util.exception.BadRequestException;
+import com.dmalataeva.alarcha.util.exception.RecordNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,19 +22,20 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public Order getOrderById(int orderId) {
-        return new Order(orderRepository.findById(orderId).orElse(new OrderEntity()));
-    }
+    @Autowired
+    private CustomerService customerService;
 
-    /*public List<Order> getOrderByCustomerId(int customerId) {
-        List<OrderEntity> orderEntityList = orderRepository.findOrderByCustomerId(customerId);
-        List<Order> orderList = new ArrayList<>();
-        for (OrderEntity orderEntity:orderEntityList) {
-            orderList.add(new Order(orderEntity));
-        }
+    @Autowired
+    private ShippingService shippingService;
 
-        return orderList;
+    /*public OrderService() {
+        customerService = new CustomerService();
+        shippingService = new ShippingService();
     }*/
+
+    public Order getOrderById(int orderId) throws Exception {
+        return new Order(orderRepository.findById(orderId).orElseThrow(RecordNotFoundException::new));
+    }
 
     public List<Order> getOrderByCustomerId(int customerId) {
         List<OrderEntity> resEntities = orderRepository.findOrdersByCustomerId(customerId);
@@ -39,7 +47,32 @@ public class OrderService {
         return res;
     }
 
-    public Order saveOrder(Order order) {
+    public List<Order> getOrderByShippingId(int shippingId) {
+        List<OrderEntity> resEntities = orderRepository.findOrdersByShippingId(shippingId);
+        List<Order> res = new ArrayList<>();
+        for (OrderEntity entity:resEntities) {
+            res.add(new Order(entity));
+        }
+
+        return res;
+    }
+
+    public Order saveOrder(OrderAndShipping orderAndShipping) throws Exception {
+
+        // check customer id
+        try {
+            customerService.getCustomerById(orderAndShipping.getCustomerId());
+        } catch (RecordNotFoundException e) {
+            throw new BadRequestException();
+        }
+
+        // add shipping
+        Shipping shipping = shippingService.saveShipping(orderAndShipping.extractShipping());
+
+        // set the new id
+        Order order = orderAndShipping.extractOrder();
+        order.setShippingId(shipping.getShippingId());
+
         OrderEntity saveResult = orderRepository.save(order.convertToEntity());
         return new Order(saveResult);
     }

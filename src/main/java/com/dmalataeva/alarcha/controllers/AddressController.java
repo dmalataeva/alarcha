@@ -1,7 +1,6 @@
 package com.dmalataeva.alarcha.controllers;
 
 import com.dmalataeva.alarcha.models.Address;
-import com.dmalataeva.alarcha.repositories.AddressRepository;
 import com.dmalataeva.alarcha.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,9 @@ public class AddressController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Address getAddress(@RequestParam("id") int id) { return addressService.getAddressById(id); }
+    public Address getAddress(@RequestParam("id") int id) throws Exception {
+        return addressService.getAddressById(id);
+    }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void putAddress(@RequestBody Address address) {

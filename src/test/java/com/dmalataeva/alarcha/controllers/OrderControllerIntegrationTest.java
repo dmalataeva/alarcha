@@ -40,7 +40,7 @@ public class OrderControllerIntegrationTest {
     public void whenGetOrderById_thenReturnOrder() throws Exception {
         Order order = new Order(1,"placed",Instant.now(),10.0,1,1);
 
-        OrderEntity res = orderRepository.save(order.convertToEntity());
+        orderRepository.save(order.convertToEntity());
 
         mvc.perform(MockMvcRequestBuilders.get("/order").param("id", order.getOrderId() + "")
                 .contentType(MediaType.APPLICATION_JSON))

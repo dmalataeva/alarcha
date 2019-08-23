@@ -1,38 +1,24 @@
 package com.dmalataeva.alarcha.models;
 
-import com.dmalataeva.alarcha.entities.OrderEntity;
-
-import java.sql.Timestamp;
 import java.time.Instant;
 
-public class Order {
+public class OrderAndShipping {
     private int orderId;
     private String status;
     private Instant dateCreated;
     private double subtotal;
     private int customerId;
+
     private int shippingId;
+    private String type;
+    private double shippingCost;
 
-    public Order (int orderId, String status, Instant dateCreated, double subtotal, int customerId, int shippingId) {
-        this.orderId = orderId;
-        this.status = status;
-        this.dateCreated = dateCreated;
-        this.subtotal = subtotal;
-        this.customerId = customerId;
-        this.shippingId = shippingId;
+    public Order extractOrder() {
+        return new Order(orderId, status, dateCreated, subtotal, customerId, shippingId);
     }
 
-    public Order (OrderEntity orderEntity) {
-        this.orderId = orderEntity.getOrderId();
-        this.status = orderEntity.getStatus();
-        this.dateCreated = orderEntity.getDateCreated() == null ? null : orderEntity.getDateCreated().toInstant();
-        this.subtotal = orderEntity.getSubtotal();
-        this.customerId = orderEntity.getCustomerId();
-        this.shippingId = orderEntity.getShippingId();
-    }
-
-    public OrderEntity convertToEntity() {
-        return new OrderEntity(orderId, status, dateCreated == null ? null : Timestamp.from(dateCreated), subtotal, customerId, shippingId);
+    public Shipping extractShipping() {
+        return new Shipping(shippingId, type, shippingCost);
     }
 
     public int getOrderId() {
@@ -81,6 +67,24 @@ public class Order {
 
     public void setShippingId(int shippingId) {
         this.shippingId = shippingId;
+    }
+
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getShippingCost() {
+        return shippingCost;
+    }
+
+    public void setShippingCost(double shippingCost) {
+        this.shippingCost = shippingCost;
     }
 
 }

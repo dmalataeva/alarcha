@@ -22,7 +22,9 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Customer getCustomer(@RequestParam("id") int id) { return customerService.getCustomerById(id); }
+    public Customer getCustomer(@RequestParam("id") int id) throws Exception {
+        return customerService.getCustomerById(id);
+    }
 
     @RequestMapping(method = RequestMethod.PUT)
     public void putCustomer(@RequestBody Customer customer) {

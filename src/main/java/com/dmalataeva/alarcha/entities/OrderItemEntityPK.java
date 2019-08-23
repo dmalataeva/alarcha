@@ -20,6 +20,8 @@ public class OrderItemEntityPK implements Serializable {
     private int productId;
     private int orderId;
 
+    public OrderItemEntityPK() { }
+
     public OrderItemEntityPK(int productId, int orderId) {
         this.productId = productId;
         this.orderId = orderId;

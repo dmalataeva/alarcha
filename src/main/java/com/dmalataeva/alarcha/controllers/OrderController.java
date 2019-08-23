@@ -2,6 +2,7 @@ package com.dmalataeva.alarcha.controllers;
 
 import com.dmalataeva.alarcha.entities.OrderEntity;
 import com.dmalataeva.alarcha.models.Order;
+import com.dmalataeva.alarcha.models.OrderAndShipping;
 import com.dmalataeva.alarcha.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,19 +30,24 @@ public class OrderController {
         return orderService.getOrderByCustomerId(id);
     }
 
+    @RequestMapping(path = "/shipping", method = RequestMethod.GET)
+    public List<Order> getOrderByShippingId(@RequestParam("id") int id) {
+        return orderService.getOrderByShippingId(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public Order getOrder(@RequestParam("id") int id) {
+    public Order getOrder(@RequestParam("id") int id) throws Exception {
         return orderService.getOrderById(id);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void putOrder(@RequestBody Order order) {
-        orderService.saveOrder(order);
+    public void putOrder(@RequestBody OrderAndShipping orderAndShipping) throws Exception {
+        orderService.saveOrder(orderAndShipping);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Order postOrder(@RequestBody Order order) {
-        return orderService.saveOrder(order);
+    public Order postOrder(@RequestBody OrderAndShipping orderAndShipping) throws Exception {
+        return orderService.saveOrder(orderAndShipping);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

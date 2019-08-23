@@ -8,13 +8,13 @@ USE `jkshop` ;
 DROP TABLE IF EXISTS `cart_item`;
 DROP TABLE IF EXISTS `order_item`;
 DROP TABLE IF EXISTS `cart`;
-DROP TABLE IF EXISTS `shop_order`;
 DROP TABLE IF EXISTS `product`;
 DROP TABLE IF EXISTS `shipping`;
 DROP TABLE IF EXISTS `customer`;
 DROP TABLE IF EXISTS `seller`;
 DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `address`;
+DROP TABLE IF EXISTS `shop_order`;
 
 -- -----------------------------------------------------
 -- Table `shop`.`user`
@@ -86,8 +86,8 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `shipping` (
   `shipping_id` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(255) NOT NULL, -- delivery or pickup at pickup points
-  `shipping_cost` FLOAT NOT NULL,
+  `type` VARCHAR(255), -- delivery or pickup at pickup points
+  `shipping_cost` FLOAT,
   PRIMARY KEY (`shipping_id`)
   );
 
